@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Ticket QR Code Generator</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<style>
+    body{
+        background-color: lightblue;
+    }
+
+    header{
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        padding: 10px;
+        position: relative;
+    }
+
+    .container{
+        margin-top: 40px;
+        margin-left: 68%;
+        height: 520px;
+        width: 400px;
+        border-radius: 40px;
+        background-color: rgb(119, 184, 241);
+    }
+
+    .form-container{
+        font-size: 18px;
+        margin-left: 20px;
+        margin-top: 20px;
+        flex: 1;
+    }
+
+    form h2{
+        padding-top: 20px;
+        text-align: center;
+    }
+
+    form label{
+        display: block;
+        padding: 5px;
+    }
+
+    form input{
+        margin-left: 5px;
+        width: 340px;
+        padding: 6px;
+        border-radius: 5px;
+        border: none;
+    }
+
+    .form-container button{
+        font-size: 17px;
+        display: block; /* Centers the button */
+        margin: 20px auto;
+        padding: 10px;
+        border-radius: 15px;
+        border: none;
+        cursor: pointer;
+    }
+
+    .image-container {
+        margin-top: -35%;
+        justify-content: left; /* Center the image */
+        margin-left:60px;
+    }
+
+    .image-container img {
+        max-width: 100%; /* Make image responsive */
+        height: 530px; /* Maintain aspect ratio */
+        border-radius: 30px; /* Optional: add border radius */
+    }
+        
+    p{
+        text-align: center;
+    }
+
+</style>
+<body>
+<header>
+        <h1>Bus Ticket QR Code Generator</h1>
+    </header>
+
+        <div class="container">
+            <div class="form-container">
+                <form name="signinform" method="POST" action="signin.php">
+                    <h2>Sign In</h2>
+                    <label>Email:</label>
+                    <input type="email" id="email" name="email"><br><br>
+                    
+                    <label>Password:</label>
+                    <div style="position: relative;">
+                        <input type="password" id="password" name="password" required>
+                        <i class="fa-duotone fa-solid fa-eye" id="togglePassword" style="position: absolute; right: 27px; top: 5px; cursor: pointer;"></i>
+                    </div><br><br>
+
+                    <p><a href="retrieve_security_question.php">Forgot Password?</a></p>
+                    <button type="submit">Sign In</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="image-container">
+            <img src="image.png" height="400px" width="800px">
+        </div>
+
+        <script>
+            function validateForm() {
+                var Regname = /^[A-Za-z\s]+$/;
+                var email = document.signupform.email.value.trim();
+                var tel = document.signupform.tel.value.trim();
+                var password = document.signupform.password.value.trim();
+        
+        
+                var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (email === "") {
+                    alert("Email cannot be blank.");
+                    return false;
+                } else if (!emailPattern.test(email)) {
+                    alert("Please enter a valid email.");
+                    return false;
+                }
+    
+        
+                if (password === "") {
+                    alert("Password cannot be blank.");
+                    return false;
+                }
+        
+                // Additional password validations can be added here
+        
+                return true; // Submit the form if all validations pass
+            }
+            const togglePassword = document.querySelector('#togglePassword');
+            const password = document.querySelector('#password');
+
+            togglePassword.addEventListener('click', () => {
+            // Toggle the type attribute
+            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+            password.setAttribute('type', type);
+            // Toggle the eye slash icon
+            this.classList.toggle('fa-eye-slash');
+            });
+        </script>
+</body>
+</html>
